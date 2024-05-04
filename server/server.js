@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
+import mongoose from "mongoose"; 
 import workoutRoutes from "./routes/Workout.route.js"
 import cors from "cors"
 

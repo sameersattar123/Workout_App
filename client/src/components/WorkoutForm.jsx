@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useWorkoutContext } from '../hooks/useWorkoutContext'
 
 const WorkoutForm = () => {
   const [title, setTitle] = useState("")
@@ -6,29 +7,35 @@ const WorkoutForm = () => {
   const [load, setLoad] = useState("")
   const [error, setError] = useState(null)
 
+  const {dispatch} = useWorkoutContext()
+
   const handleSubmit = async(e) => {
-    e.preventDefault()
+    e.preventDefault() 
 
     const workout = {title, load, reps}
 
     const response = await fetch('http://localhost:4000/api/workouts', {
       method: 'POST',
-      body: JSON.stringify(workout),
+      body: JSON.stringify(workout), 
       headers: {
         'Content-Type': 'application/json'
       }
     })
-    const json = await response.json()
+    const data = await response.json()
 
     if (!response.ok) {
-      setError(json.error)
+      setError(data.error)
     }
     if (response.ok) {
       setError(null)
       setTitle('')
       setLoad('')
       setReps('')
-      console.log('new workout added:', json)
+      console.log('new workout added:', data)
+      dispatch({
+        type: "CREATE_WORKOUTS",
+        payload: data
+      })
     }
 
   }
