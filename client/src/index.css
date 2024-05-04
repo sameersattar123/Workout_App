@@ -90,6 +90,17 @@ form button {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.deleteBtn {
+  background-color: rgb(231, 87, 87);
+  padding: 4px;
+  border: none;
+  margin: 2px;
+  color: rgb(230, 222, 222);
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
 div.error {
   padding: 10px;
   background: #ffefef;
