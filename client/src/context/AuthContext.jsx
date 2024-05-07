@@ -1,6 +1,7 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 export const AuthContext = createContext();
+
 
 export const AuthReducers = (state, action) => {
   switch (action.type) {
@@ -10,12 +11,8 @@ export const AuthReducers = (state, action) => {
       };
     case "LOGOUT":
       return {
-        user: [action.payload, ...state.workouts],
-      };
-    case "DELETE_WORKOUT":
-      return {
-        user: state.workouts.filter((w) =>w._id !== action.payload._id),
-      };
+        user: null
+      }
     default:
       return state;
   }
@@ -26,6 +23,13 @@ export const AuthContextProvider = ({ children }) => {
     user: null,
   });
   console.log(state)
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user) {
+            dispatch({type : 'LOGIN' , payload : user})
+    }
+  }, [])
+  
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
       {children}
