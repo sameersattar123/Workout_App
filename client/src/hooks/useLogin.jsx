@@ -5,14 +5,14 @@ export const useLogin = () => {
   const { dispatch } = useAuthContext();
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
-  const Login = async (email, password) => {
+  const login = async (email, password) => {
     setLoading(true);
     setError(null);
     const response = await fetch("http://localhost:4000/api/user/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json", 
       },
     });
 
@@ -33,7 +33,7 @@ export const useLogin = () => {
   };
 
   return {
-    Login,
+    login,
     loading,
     error,
   };

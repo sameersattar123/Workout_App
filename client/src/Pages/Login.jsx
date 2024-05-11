@@ -5,12 +5,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { Login, loading, error } = useLogin();
+  const { login, loading, error } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await Login(email, password);
+    await login(email, password);
     setEmail("");
     setPassword("");
   };
