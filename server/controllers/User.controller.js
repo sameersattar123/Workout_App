@@ -18,7 +18,7 @@ export const loginController = async (req, res) => {
 };
 export const signupController = async (req, res) => {
   const { email, password } = req.body;
-  try {
+  try { 
     const user = await User.signup(email, password);
  
     const token = createToken(user._id);
